@@ -145,68 +145,7 @@
         <a href="/" class="back-btn">← Back to Home</a>
 
         <!-- ===== ПАСХАЛКА ===== -->
-        <p class="easter-egg-trigger" id="easterEggTrigger">What is that?</p>
-
-        <div class="easter-egg-content" id="easterEggContent">
-            <p class="hacked-msg">Your device has been hacked!</p>
-            <p class="sorry-msg">Don't worry, that a joke)</p>
+        <a href="/egg" class="easter-egg-trigger">What is that?</a>
         </div>
-    </div>
-
-    <script>
-        const trigger = document.getElementById('easterEggTrigger');
-        const content = document.getElementById('easterEggContent');
-        const body = document.body;
-        let blinkInterval = null;
-        let timeout = null;
-
-        trigger.addEventListener('click', function() {
-            // Если пасхалка уже открыта — закрываем и сбрасываем
-            if (content.classList.contains('revealed')) {
-                content.classList.remove('revealed');
-                stopBlinking();
-                clearTimeout(timeout);
-                body.style.backgroundColor = ''; // возвращаем чёрный фон
-                // Сбрасываем извинение на случай, если оно было показано
-                const sorry = document.querySelector('.sorry-msg');
-                if (sorry) {
-                    sorry.style.opacity = '0';
-                    sorry.style.transform = 'translateY(10px)';
-                }
-                return;
-            }
-
-            // Показываем пасхалку
-            content.classList.add('revealed');
-            startBlinking();
-
-            // Через 4 секунды останавливаем мигание и показываем извинение
-            timeout = setTimeout(() => {
-                stopBlinking();
-                body.style.backgroundColor = 'black';
-                const sorry = document.querySelector('.sorry-msg');
-                if (sorry) {
-                    sorry.style.opacity = '1';
-                    sorry.style.transform = 'translateY(0)';
-                }
-            }, 4000);
-        });
-
-        function startBlinking() {
-            if (blinkInterval) return;
-            let isWhite = false;
-            blinkInterval = setInterval(() => {
-                body.style.backgroundColor = isWhite ? 'black' : 'white';
-                isWhite = !isWhite;
-            }, 150);
-        }
-
-        function stopBlinking() {
-            if (blinkInterval) {
-                clearInterval(blinkInterval);
-                blinkInterval = null;
-            }
-        }
-    </script>
 </body>
 </html>
