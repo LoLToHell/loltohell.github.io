@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            min-height: 100%;
+            background-color: black;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 60px 30px 40px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out forwards;
+        }
+
+        .about-text {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            font-weight: normal;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out 0.4s forwards;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 35px;
+            border: 2px solid white;
+            border-radius: 50px;
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: background 0.3s, color 0.3s;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out 0.8s forwards;
+        }
+
+        .back-btn:hover {
+            background: white;
+            color: black;
+        }
+
+        /* ----- Стили пасхалки ----- */
+        .easter-egg-trigger {
+            font-size: 0.85rem;
+            font-weight: normal;
+            color: #555;
+            cursor: pointer;
+            margin-top: 40px;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out 1.2s forwards;
+            transition: color 0.3s;
+        }
+
+        .easter-egg-trigger:hover {
+            color: #aaa;
+        }
+
+        /* Контейнер пасхалки — изначально скрыт */
+        .easter-egg-content {
+            display: none;
+            margin-top: 25px;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        /* Когда добавляется класс .revealed, блок становится видимым */
+        .easter-egg-content.revealed {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Внутренние элементы пасхалки с задержкой анимации */
+        .hacked-msg {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #ff4444;
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out 0s forwards;
+        }
+
+        .ascii-art {
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.2;
+            color: #ff4444;
+            white-space: pre;
+            margin: 20px 0;
+            opacity: 0;
+        }
+
+        .skull {
+            animation: fadeIn 0.8s ease-out 1s forwards;
+        }
+
+        .sorry-msg {
+            font-size: 1rem;
+            font-weight: normal;
+            margin-top: 15px;
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out 2.5s forwards;
+        }
+
+        .heart {
+            color: #ff4444;
+            animation: fadeIn 0.8s ease-out 3.5s forwards;
+            margin-top: 10px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 500px) {
+            h1 { font-size: 2.2rem; }
+            .about-text { font-size: 1.1rem; }
+            .ascii-art { font-size: 0.65rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>About Me</h1>
+
+        <p class="about-text">
+            Hey! I'm loltohell, and this is my little corner on the web.
+            I love building things, learning new technologies, and sharing ideas.
+            When I'm not coding, you can find me exploring music, photography, or just enjoying a good coffee.
+        </p>
+
+        <p class="about-text" style="animation-delay: 0.6s;">
+            I created this site to experiment with minimal design and smooth animations.
+            It's a constant work in progress, just like me.
+            Thanks for stopping by!
+        </p>
+
+        <!-- Твоя ссылка на Telegram (пример с правильным href) -->
+        <p class="about-text" style="animation-delay: 1.0s;">
+            You can find me on my 
+            <a href="https://t.me/loltohell" target="_blank" rel="noopener noreferrer" style="color: white; text-decoration: underline;">Telegram</a>.
+        </p>
+
+        <a href="/" class="back-btn">← Back to Home</a>
+
+        <!-- ===== ПАСХАЛКА ===== -->
+        <p class="easter-egg-trigger" id="easterEggTrigger">What is it?</p>
+
+        <div class="easter-egg-content" id="easterEggContent">
+            <p class="hacked-msg">Your device has been hacked!</p>
+            <pre class="ascii-art skull">
+        _____
+     .-'     '-.
+    /           \
+   |   .-"""-.   |
+   |  /       \  |
+   |  |       |  |
+    \  \     /  /
+     '-.\   /.-'
+         '-'
+            </pre>
+            <p class="sorry-msg">Ah, sorry, that a joke</p>
+            <pre class="ascii-art heart">
+      .--..--..--.
+    .'  .'  .'  '.
+   |   |   |   |   |
+    \   \   \   \ /
+     '--''--''--'
+            </pre>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('easterEggTrigger').addEventListener('click', function() {
+            var content = document.getElementById('easterEggContent');
+            // Если уже открыто — скрываем обратно (toggle)
+            if (content.classList.contains('revealed')) {
+                content.classList.remove('revealed');
+            } else {
+                content.classList.add('revealed');
+            }
+        });
+    </script>
+</body>
+</html>
