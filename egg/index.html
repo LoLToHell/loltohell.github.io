@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>...</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: black;
+            color: #00ff00; /* терминальный зелёный для текста */
+            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: left;
+            transition: background-color 0.1s;
+        }
+
+        .terminal {
+            max-width: 600px;
+            width: 90%;
+            padding: 20px;
+        }
+
+        .line {
+            opacity: 0;
+            margin: 5px 0;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .line.visible {
+            opacity: 1;
+        }
+
+        /* Красное сообщение */
+        .warning {
+            color: #ff0000;
+            font-weight: bold;
+            font-size: 1.4rem;
+            text-shadow: 0 0 10px rgba(255,0,0,0.7);
+            animation: pulse 0.5s infinite alternate;
+            opacity: 0;
+            margin-top: 20px;
+        }
+
+        .warning.revealed {
+            opacity: 1;
+        }
+
+        /* Извинение */
+        .sorry {
+            color: #ffffff;
+            font-size: 1.2rem;
+            margin-top: 30px;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .sorry.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 35px;
+            border: 2px solid white;
+            border-radius: 50px;
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: bold;
+            font-family: Arial, Helvetica, sans-serif;
+            transition: background 0.3s, color 0.3s;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.8s ease, transform 0.8s ease, background 0.3s, color 0.3s;
+        }
+
+        .back-btn.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .back-btn:hover {
+            background: white;
+            color: black;
+        }
+
+        @keyframes pulse {
+            from { transform: scale(1); }
+            to { transform: scale(1.05); }
+        }
+
+        @media (max-width: 500px) {
+            body { font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="terminal" id="terminal"></div>
+
+    <script>
+        const terminal = document.getElementById('terminal');
+        const body = document.body;
+
+        // Массив строк для печати
+        const lines = [
+            { text: 'IP is Detected...', delay: 800 },
+            { text: 'Bypassing firewall...', delay: 1000 },
+            { text: 'Injecting payload...', delay: 900 },
+            { text: 'Encrypting files...', delay: 1100 },
+            { text: 'Virus introduction...', delay: 1000 },
+            { text: 'Access granted.', delay: 700 }
+        ];
+
+        // Функция печати одной строки посимвольно
+        function typeLine(text, container, charDelay = 50) {
+            return new Promise(resolve => {
+                const lineDiv = document.createElement('div');
+                lineDiv.className = 'line visible';
+                container.appendChild(lineDiv);
+                let i = 0;
+                const interval = setInterval(() => {
+                    lineDiv.textContent += text[i];
+                    i++;
+                    if (i >= text.length) {
+                        clearInterval(interval);
+                        resolve();
+                    }
+                }, charDelay);
+            });
+        }
+
+        // Функция задержки
+        function delay(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        async function startSequence() {
+            // Печатаем строки терминала
+            for (const line of lines) {
+                await typeLine(line.text, terminal, 40); // скорость печати 40мс на символ
+                await delay(line.delay); // пауза после строки
+            }
+
+            // Мигание фона и красное предупреждение
+            let blinkInterval = setInterval(() => {
+                body.style.backgroundColor = body.style.backgroundColor === 'white' ? 'black' : 'white';
+            }, 150);
+
+            const warning = document.createElement('div');
+            warning.className = 'warning';
+            warning.textContent = '⚠ Your device has been hacked! ⚠';
+            terminal.appendChild(warning);
+            
+            // Небольшая задержка перед показом warning
+            await delay(400);
+            warning.classList.add('revealed');
+
+            // Через 3 секунды останавливаем мигание и показываем извинение
+            await delay(3000);
+            clearInterval(blinkInterval);
+            body.style.backgroundColor = 'black';
+
+            const sorry = document.createElement('div');
+            sorry.className = 'sorry';
+            sorry.textContent = 'Ah, sorry, that a joke ♥';
+            terminal.appendChild(sorry);
+            sorry.classList.add('revealed');
+
+            const backBtn = document.createElement('a');
+            backBtn.href = '/about';
+            backBtn.className = 'back-btn';
+            backBtn.textContent = '← Back to About';
+            terminal.appendChild(backBtn);
+            
+            await delay(600);
+            backBtn.classList.add('revealed');
+        }
+
+        // Запуск после загрузки
+        window.addEventListener('DOMContentLoaded', startSequence);
+    </script>
+</body>
+</html>
