@@ -13,35 +13,32 @@
             color: white;
             font-family: Arial, Helvetica, sans-serif;
             font-weight: bold;
-            /* Центрирование по горизонтали, но не по вертикали — контент может быть длинным */
             text-align: center;
+            transition: background-color 0.1s; /* плавная смена фона при мигании */
         }
 
-        /* Контейнер для всего содержимого, чтобы не прилипало к краям */
         .container {
             max-width: 700px;
             margin: 0 auto;
-            padding: 60px 30px;
+            padding: 60px 30px 40px;
         }
 
         h1 {
             font-size: 3rem;
             margin-bottom: 1rem;
             opacity: 0;
-            /* Анимация появления заголовка */
             animation: fadeIn 1.5s ease-out forwards;
         }
 
         .about-text {
             font-size: 1.3rem;
             line-height: 1.6;
-            font-weight: normal; /* для читаемости обычного текста */
+            font-weight: normal;
             margin-bottom: 2rem;
             opacity: 0;
             animation: fadeIn 1.5s ease-out 0.4s forwards;
         }
 
-        /* Кнопка возврата на главную */
         .back-btn {
             display: inline-block;
             margin-top: 20px;
@@ -62,13 +59,61 @@
             color: black;
         }
 
-        /* Простая анимация появления */
+        /* ----- Пасхалка ----- */
+        .easter-egg-trigger {
+            font-size: 0.85rem;
+            font-weight: normal;
+            color: #555;
+            cursor: pointer;
+            margin-top: 40px;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out 1.2s forwards;
+            transition: color 0.3s;
+        }
+
+        .easter-egg-trigger:hover {
+            color: #aaa;
+        }
+
+        .easter-egg-content {
+            display: none;
+            margin-top: 25px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .easter-egg-content.revealed {
+            display: block;
+            opacity: 1;
+        }
+
+        .hacked-msg {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #ff0000;
+            text-shadow: 0 0 10px rgba(255,0,0,0.7);
+            animation: pulse 0.5s infinite alternate;
+        }
+
+        .sorry-msg {
+            font-size: 1.2rem;
+            margin-top: 20px;
+            color: #ffffff;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Адаптация для смартфонов */
+        @keyframes pulse {
+            from { transform: scale(1); }
+            to { transform: scale(1.05); }
+        }
+
         @media (max-width: 500px) {
             h1 { font-size: 2.2rem; }
             .about-text { font-size: 1.1rem; }
@@ -79,9 +124,8 @@
     <div class="container">
         <h1>About Me</h1>
 
-        <!-- Замени текст внутри <p> на свой, можно добавить несколько абзацев -->
         <p class="about-text">
-            Hi! I'm LoLToHell, and this is my little corner of the internet.
+            Hi! I'm loltohell, and this is my little corner of the internet.
             I love creating new things, learning new technologies, and sharing ideas.
             When I'm not programming, you can find me listening to music or just playing games.
         </p>
@@ -92,12 +136,77 @@
             Thanks for stopping by!
         </p>
 
-        <p class="about-text" style="animation-delay: 0.6s;">
-           You're can find me here in on <a href="https://t.me/loltohell" target="_blank" rel="nooper noreferrer" style="color: white; text-decoration: underline;">Telegram</a>
+        <!-- Ссылка на Telegram -->
+        <p class="about-text" style="animation-delay: 1.0s;">
+            You can find me on my 
+            <a href="https://t.me/loltohell" target="_blank" rel="noopener noreferrer" style="color: white; text-decoration: underline;">Telegram</a>.
         </p>
 
-        <!-- Ссылка обратно на главную -->
         <a href="/" class="back-btn">← Back to Home</a>
+
+        <!-- ===== ПАСХАЛКА ===== -->
+        <p class="easter-egg-trigger" id="easterEggTrigger">What is that?</p>
+
+        <div class="easter-egg-content" id="easterEggContent">
+            <p class="hacked-msg">Your device has been hacked!</p>
+            <p class="sorry-msg">Don't worry, that a joke)</p>
+        </div>
     </div>
+
+    <script>
+        const trigger = document.getElementById('easterEggTrigger');
+        const content = document.getElementById('easterEggContent');
+        const body = document.body;
+        let blinkInterval = null;
+        let timeout = null;
+
+        trigger.addEventListener('click', function() {
+            // Если пасхалка уже открыта — закрываем и сбрасываем
+            if (content.classList.contains('revealed')) {
+                content.classList.remove('revealed');
+                stopBlinking();
+                clearTimeout(timeout);
+                body.style.backgroundColor = ''; // возвращаем чёрный фон
+                // Сбрасываем извинение на случай, если оно было показано
+                const sorry = document.querySelector('.sorry-msg');
+                if (sorry) {
+                    sorry.style.opacity = '0';
+                    sorry.style.transform = 'translateY(10px)';
+                }
+                return;
+            }
+
+            // Показываем пасхалку
+            content.classList.add('revealed');
+            startBlinking();
+
+            // Через 4 секунды останавливаем мигание и показываем извинение
+            timeout = setTimeout(() => {
+                stopBlinking();
+                body.style.backgroundColor = 'black';
+                const sorry = document.querySelector('.sorry-msg');
+                if (sorry) {
+                    sorry.style.opacity = '1';
+                    sorry.style.transform = 'translateY(0)';
+                }
+            }, 4000);
+        });
+
+        function startBlinking() {
+            if (blinkInterval) return;
+            let isWhite = false;
+            blinkInterval = setInterval(() => {
+                body.style.backgroundColor = isWhite ? 'black' : 'white';
+                isWhite = !isWhite;
+            }, 150);
+        }
+
+        function stopBlinking() {
+            if (blinkInterval) {
+                clearInterval(blinkInterval);
+                blinkInterval = null;
+            }
+        }
+    </script>
 </body>
 </html>
