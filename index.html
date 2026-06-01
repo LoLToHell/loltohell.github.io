@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <style>
+        /* Базовые стили: чёрный фон, белый жирный текст, всё по центру */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: black;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Общий контейнер для двух экранов */
+        .screen {
+            position: absolute;
+            width: 100%;
+            /* Плавное изменение прозрачности за 1 секунду */
+            transition: opacity 1s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        /* Скрытый экран */
+        .hidden {
+            opacity: 0;
+            /* pointer-events: none чтобы сквозь прозрачный слой можно было кликать, 
+               когда он невидим */
+            pointer-events: none;
+        }
+
+        /* Первый экран (Hi There!) виден сразу */
+        #screen1 {
+            opacity: 1;
+        }
+
+        /* Стилизуем кнопку: круглая обводка, белая рамка */
+        .continue-btn {
+            margin-top: 30px;
+            padding: 15px 40px;
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+            border-radius: 50px; /* круглая форма */
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none; /* убираем подчёркивание у ссылки */
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .continue-btn:hover {
+            background: white;
+            color: black;
+        }
+
+        /* Для текста можно немного увеличить размер */
+        h1 {
+            font-size: 3rem;
+            margin: 0;
+        }
+        p {
+            font-size: 1.8rem;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Экран 1: "Hi There!" -->
+    <div id="screen1" class="screen">
+        <h1>Hi There!</h1>
+    </div>
+
+    <!-- Экран 2: вопрос и кнопка, изначально скрыт -->
+    <div id="screen2" class="screen hidden">
+        <p>Do you want to know something about me?</p>
+        <!-- Используем ссылку, стилизованную под кнопку, чтобы был редирект -->
+        <a href="/about" class="continue-btn">Continue</a>
+    </div>
+
+    <script>
+        // Когда страница загрузилась, запускаем анимацию
+        window.addEventListener('DOMContentLoaded', () => {
+            const screen1 = document.getElementById('screen1');
+            const screen2 = document.getElementById('screen2');
+
+            // Через 2 секунды начинаем плавно скрывать первый экран
+            setTimeout(() => {
+                screen1.classList.add('hidden'); // добавляем класс, opacity станет 0 (плавно)
+            }, 2000);
+
+            // Ещё через 1 секунду (когда первый уже исчез) показываем второй экран
+            setTimeout(() => {
+                // Убираем класс hidden → opacity становится 1 (плавно)
+                screen2.classList.remove('hidden');
+            }, 3000); // 2000ms ожидания + 1000ms на анимацию исчезновения
+        });
+    </script>
+
+</body>
+</html>
