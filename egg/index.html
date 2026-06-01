@@ -159,21 +159,21 @@
 
             const warning = document.createElement('div');
             warning.className = 'warning';
-            warning.textContent = '⚠ Your device has been hacked! ⚠';
+            warning.textContent = 'Your device has been hacked!';
             terminal.appendChild(warning);
             
             // Небольшая задержка перед показом warning
             await delay(400);
             warning.classList.add('revealed');
 
-            // Через 3 секунды останавливаем мигание и показываем извинение
-            await delay(3000);
+            // Через 7 секунды останавливаем мигание и показываем извинение
+            await delay(7000);
             clearInterval(blinkInterval);
             body.style.backgroundColor = 'black';
 
             const sorry = document.createElement('div');
             sorry.className = 'sorry';
-            sorry.textContent = 'Ah, sorry, that a joke ♥';
+            sorry.textContent = 'Ah, sorry, that a joke';
             terminal.appendChild(sorry);
             sorry.classList.add('revealed');
 
