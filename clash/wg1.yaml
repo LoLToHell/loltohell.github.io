@@ -626,9 +626,9 @@ proxy-groups:
   - uni-QUIC:1701
   - uni-QUIC:4500
   url: https://telegram.org/
-  interval: 300
-  timeout: 5000
-  tolerance: 50
+  interval: 30
+  timeout: 500
+  tolerance: 5
   lazy: false
 - icon: https://www.vectorlogo.zone/logos/cloudflare/cloudflare-icon.svg
   interval: 300
