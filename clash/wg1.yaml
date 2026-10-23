@@ -1129,7 +1129,7 @@ proxy-groups:
   - WARP-ARN-10
   - WARP-ARN-11
   - WARP-ARN-12
-  url: https://telegram.org/
+  url: https://web.telegram.org/
   interval: 5
   timeout: 5000
   tolerance: 20
@@ -1326,4 +1326,5 @@ rules:
 - DOMAIN-SUFFIX,ai.google.dev,Cloudflare
 - DOMAIN,aistudio.google.com,Cloudflare
 - DOMAIN,generativelanguage.googleapis.com,Cloudflare
+- DOMAIN,telegram.org,AUTO (URLTEST)
 - MATCH, Cloudflare
