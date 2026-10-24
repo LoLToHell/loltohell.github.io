@@ -1316,6 +1316,13 @@ clash-for-android:
   append-system-dns: false
   ui-subtitle-pattern: ''
 rules:
+rules:
+- DOMAIN-SUFFIX,cloudflareclient.com,DIRECT
+- IP-CIDR,188.114.96.0/20,DIRECT
+- IP-CIDR,188.114.97.0/24,DIRECT
+- IP-CIDR,162.159.192.0/18,DIRECT
+# ... далее ваши существующие правила
+- DOMAIN-SUFFIX,ru,DIRECT
 - DOMAIN-SUFFIX,ru,DIRECT
 - DOMAIN-SUFFIX,xn--p1ai,DIRECT
 - DOMAIN-SUFFIX,chatgpt.com,Cloudflare
