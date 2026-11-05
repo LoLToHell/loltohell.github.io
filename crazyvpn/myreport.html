@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="Технический доклад о вредоносном Android-дроппере Crazy VPN и предполагаемой связи с Oblivion RAT.">
+  <title>Анализ дроппера Crazy VPN — Oblivion RAT</title>
+  <style>
+    :root {
+      --bg: #f4f6fa; --surface: #fff; --text: #182230; --muted: #596579;
+      --border: #dce2eb; --accent: #2457d6; --accent-soft: #eaf0ff;
+      --danger: #a3212b; --danger-soft: #fff0f0; --code: #eef1f6;
+      --shadow: 0 8px 28px rgba(20, 35, 60, .07);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #10141b; --surface: #181f2a; --text: #e9edf5; --muted: #aab5c7;
+        --border: #303b4d; --accent: #91adff; --accent-soft: #202e4c;
+        --danger: #ff9a9f; --danger-soft: #3a2026; --code: #222b38;
+        --shadow: 0 8px 28px rgba(0, 0, 0, .18);
+      }
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 1.5rem; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font: 16px/1.72 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    a { color: var(--accent); overflow-wrap: anywhere; }
+    .wrap { width: min(100% - 32px, 980px); margin: 0 auto; }
+    header { padding: 48px 0 30px; }
+    .eyebrow { color: var(--accent); font-size: .82rem; font-weight: 750; letter-spacing: .09em; text-transform: uppercase; }
+    h1 { margin: 10px 0 12px; font-size: clamp(2rem, 5vw, 3.25rem); line-height: 1.13; letter-spacing: -.035em; }
+    .subtitle { color: var(--muted); margin: 0; }
+    .alert {
+      margin: 24px 0 0; padding: 16px 18px; border: 1px solid #e6a3a7;
+      border-left: 5px solid var(--danger); background: var(--danger-soft); border-radius: 12px;
+    }
+    .layout { display: grid; grid-template-columns: 230px minmax(0, 1fr); gap: 24px; align-items: start; padding-bottom: 56px; }
+    nav, article section, .summary-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 16px; box-shadow: var(--shadow);
+    }
+    nav { padding: 18px; position: sticky; top: 16px; }
+    nav strong { display: block; margin-bottom: 10px; }
+    nav ol { padding-left: 20px; margin: 0; }
+    nav li { margin: 5px 0; line-height: 1.45; }
+    nav a { text-decoration: none; font-size: .91rem; }
+    nav a:hover { text-decoration: underline; }
+    article { min-width: 0; }
+    article section { padding: clamp(18px, 3.5vw, 30px); margin-bottom: 18px; scroll-margin-top: 16px; }
+    h2 { font-size: 1.45rem; line-height: 1.3; margin: 0 0 16px; letter-spacing: -.015em; }
+    h3 { font-size: 1.08rem; margin: 24px 0 8px; line-height: 1.4; }
+    p { margin: 0 0 13px; }
+    p:last-child { margin-bottom: 0; }
+    ul, ol { padding-left: 1.4rem; }
+    li { margin: 7px 0; }
+    .meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+    .pill { border: 1px solid var(--border); border-radius: 999px; padding: 5px 10px; color: var(--muted); font-size: .83rem; }
+    .callout { padding: 14px 16px; background: var(--accent-soft); border-radius: 10px; margin: 14px 0; }
+    .muted { color: var(--muted); }
+    code, .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; overflow-wrap: anywhere; }
+    code { background: var(--code); border-radius: 5px; padding: .12em .35em; font-size: .9em; }
+    .ioc-list { list-style: none; padding: 0; }
+    .ioc-list li { padding: 10px 12px; background: var(--code); border-radius: 8px; margin: 8px 0; }
+    .ioc-list strong { display: block; font-size: .78rem; color: var(--muted); margin-bottom: 2px; }
+    .copy { float: right; margin-left: 12px; border: 1px solid var(--border); color: var(--text); background: var(--surface); border-radius: 7px; padding: 4px 8px; cursor: pointer; font: inherit; font-size: .78rem; }
+    .copy:hover { border-color: var(--accent); }
+    footer { border-top: 1px solid var(--border); color: var(--muted); padding: 22px 0 34px; font-size: .9rem; }
+    @media (max-width: 760px) {
+      .layout { grid-template-columns: 1fr; }
+      nav { position: static; }
+      nav ol { columns: 2; column-gap: 22px; }
+      nav li { break-inside: avoid; }
+      header { padding-top: 34px; }
+    }
+    @media (max-width: 430px) { .wrap { width: min(100% - 22px, 980px); } nav ol { columns: 1; } }
+    @media print {
+      :root { --bg: #fff; --surface: #fff; --text: #111; --muted: #444; --border: #ccc; --code: #f2f2f2; --shadow: none; }
+      nav, .copy { display: none; } .layout { display: block; } article section { break-inside: avoid; box-shadow: none; }
+      body { font-size: 11pt; } header { padding-top: 0; }
+    }
+  </style>
+</head>
+<body>
+  <header class="wrap">
+    <div class="eyebrow">Отчёт по Android-угрозе</div>
+    <h1>Анализ дроппера «Crazy VPN»</h1>
+    <p class="subtitle">Предполагаемая связь с семейством Oblivion RAT</p>
+    <div class="meta">
+      <span class="pill">Дата: 5 ноября 2026</span>
+      <span class="pill">Тип анализа: статический</span>
+      <span class="pill">Образец: CrazyVPN.apk</span>
+    </div>
+    <div class="alert"><strong>Предупреждение:</strong> CrazyVPN.apk обладает признаками вредоносного дроппера. Не устанавливайте и не запускайте образец на обычном устройстве.</div>
+  </header>
+
+  <div class="wrap layout">
+    <nav aria-label="Содержание доклада">
+      <strong>Содержание</strong>
+      <ol>
+        <li><a href="#summary">Резюме</a></li>
+        <li><a href="#identity">Идентификация</a></li>
+        <li><a href="#analysis">Технический анализ</a></li>
+        <li><a href="#external">Внешние данные</a></li>
+        <li><a href="#context">Контекст Oblivion RAT</a></li>
+        <li><a href="#ioc">Индикаторы компрометации</a></li>
+        <li><a href="#response">Статус реагирования</a></li>
+        <li><a href="#recommendations">Рекомендации</a></li>
+      </ol>
+    </nav>
+
+    <main>
+      <article>
+        <section id="summary">
+          <h2>1. Резюме</h2>
+          <p>Образец <code>CrazyVPN.apk</code>, выдающий себя за VPN-приложение, является вредоносным дроппером. Реальной VPN-функциональности в его коде нет: малый DEX (около 31 КБ) служит только загрузчиком для зашифрованной полезной нагрузки размером около 578 КБ (<code>core_module.bin</code>). Дроппер умеет устанавливать второй пакет, показывает пользователю фальшивые экраны «обновления» и «удаления» и отправляет данные на удалённый сервер.</p>
+          <p>Принадлежность к семейству Oblivion RAT подтверждена данными команды (VirusTotal, ThreatFox, песочница), поскольку payload зашифрован, а ключ расшифровки установить не удалось. Уверенность в том, что образец вредоносен, — <strong>высокая</strong>. Уверенность в атрибуции к Oblivion — <strong>средне-высокая</strong>, на основании внешних данных.</p>
+          <div class="callout"><strong>Уточнение команды:</strong> файл из песочницы ANY.RUN — это не дроппер, а вторая стадия: активный зловред, который запускается после установки CrazyVPN.apk и выдачи всех разрешений. Это объясняет различие MD5 в разделе 4.</div>
+        </section>
+
+        <section id="identity">
+          <h2>2. Идентификация образца</h2>
+          <ul>
+            <li><strong>Файл:</strong> CrazyVPN.apk, 623 386 байт</li>
+            <li><strong>SHA-256:</strong> <code>de648cfbb59cf5e74944f62c5b345a1ef94f133aa6b970239c1c0f98ca7d83e6</code></li>
+            <li><strong>MD5:</strong> <code>ce3651ed3c3219a85422eda29b9d2a57</code></li>
+            <li><strong>Пакет:</strong> <code>com.crazyvpn.service.v38e11539</code>, отображаемое имя «Crazy VPN»</li>
+            <li><strong>Подпись:</strong> публичный тестовый ключ AOSP (<code>CN=Android</code>, файлы <code>META-INF/PLATFORM.*</code>).</li>
+            <li><strong>SHA-256 сертификата:</strong> <code>C8:A2:E9:BC:CF:59:7C:2F:B6:DC:66:BE:E2:93:FC:13:F2:FC:47:EC:77:BC:6B:2B:0D:52:C1:1F:51:19:2A:B8</code></li>
+          </ul>
+          <p class="muted">Использование публичного тестового ключа AOSP нетипично для легитимного коммерческого сервиса, но само по себе не доказывает вредоносность.</p>
+        </section>
+
+        <section id="analysis">
+          <h2>3. Технический анализ</h2>
+          <h3>3.1. Манифест</h3>
+          <ul>
+            <li>Разрешения: доступ в интернет, <code>REQUEST_INSTALL_PACKAGES</code>, доступ к хранилищу.</li>
+            <li>Объявлен <code>VpnService</code>, но реализующей его логики в коде не обнаружено.</li>
+            <li>Нестандартный <code>appComponentFactory</code> (<code>io.data.PipeProvider</code>): код выполняется до инициализации <code>Application</code>; такой приём типичен для упаковщиков.</li>
+            <li>Экспортированный ресивер на действие <code>INSTALL_STATUS</code>, получающий результаты установки пакетов.</li>
+            <li>В блоке <code>queries</code> указан второй пакет <code>com.crazyvpn.a7zkg3</code>, то есть вторая стадия.</li>
+            <li>Файл <code>resources.arsc</code> аномально мал (568 байт), ресурсы фактически отсутствуют.</li>
+          </ul>
+
+          <h3>3.2. Код</h3>
+          <ul>
+            <li>Имена классов обфусцированы, строки хранятся в Base64.</li>
+            <li>Загрузка кода из памяти через <code>InMemoryDexClassLoader</code>; используются <code>AES/CBC/PKCS5Padding</code> и SHA-256.</li>
+            <li>Установка пакетов через <code>PackageInstaller</code>, переход в настройки «Неизвестные источники».</li>
+            <li>Служебные метки: <code>dropper_install</code>, <code>dropper_start</code>, <code>payload_package_name</code>, <code>report_token</code>.</li>
+            <li>Сетевой код содержит собственные <code>TrustManager</code> и <code>HostnameVerifier</code>. Вероятно, проверка TLS-сертификата отключена, однако это не было полностью проверено по коду.</li>
+            <li>Адрес в коде: <code>https://31.76.244.129/api/debug/event</code>.</li>
+          </ul>
+
+          <h3>3.3. Социальная инженерия</h3>
+          <p>В WebView показываются русскоязычные экраны: «Установка обновления… Не закрывайте приложение», затем «Приложение несовместимо с устройством → Удаление приложения → Приложение удалено». Последний сценарий нужен, чтобы жертва решила, что угроза устранена, и не искала приложение. Язык интерфейса указывает на русскоязычную аудиторию.</p>
+
+          <h3>3.4. Ассеты</h3>
+          <ul>
+            <li><code>core_module.bin</code>, около 578 КБ, энтропия 8.0 — данные, вероятно, зашифрованы; предположительно, это вторая стадия.</li>
+            <li>Ещё четыре блоба с безликими именами (<code>lib_bundle.pak</code>, <code>net_index.bin</code> и другие).</li>
+            <li>Подбор ключей AES-CBC из строк и констант DEX не дал результата; ключ выводится в обфусцированном байткоде.</li>
+          </ul>
+
+          <h3>3.5. Вторая стадия (по данным команды)</h3>
+          <p>По данным команды, файл из ANY.RUN (MD5 <code>E9B97926F934641481C6AB80BDC2E744</code>) — активная вторая стадия, которая запускается после установки CrazyVPN.apk и предоставления всех разрешений. Эти сведения не проверены автором по коду.</p>
+          <ul>
+            <li>Пока второй APK устанавливается через специальные разрешения Android, пользователю показывается HTML-заглушка с анимацией «установки».</li>
+            <li>Вторая стадия скрывает себя: у неё нет значка приложения.</li>
+            <li>Исходный CrazyVPN.apk сразу удаляется с устройства и служит только первой ступенью для запуска RAT. Это согласуется с экраном «Приложение удалено» из раздела 3.3, но само удаление не проверялось.</li>
+            <li>Полезной нагрузки под видом VPN в приложении нет.</li>
+            <li>Разрешения второй стадии нехарактерны для VPN-клиента: SMS и звонки, снимки экрана, полный доступ к хранилищу с возможностью удаления файлов, неограниченный доступ в интернет. Сам дроппер этих разрешений не запрашивает: по манифесту у него есть интернет, установка пакетов и доступ к хранилищу. Следовательно, перечисленные разрешения относятся ко второй стадии.</li>
+          </ul>
+        </section>
+
+        <section id="external">
+          <h2>4. Внешние данные команды</h2>
+          <p>Следующие сведения предоставлены командой и независимо автором не проверены: страницы VirusTotal и ANY.RUN недоступны для автоматического чтения.</p>
+          <ul>
+            <li>C2 Oblivion: <code>31.56.19.10:8080</code>; payload резолвит <code>vanta.im</code> через DoH.</li>
+            <li>Тот же C2 фигурирует в ThreatFox IOC 1980621 (<code>#ButtonVPN</code>).</li>
+            <li>Дроппер с хэшем из раздела 2 опубликован как распространяемый под видом «Crazy VPN».</li>
+          </ul>
+          <div class="callout"><strong>Различие образцов:</strong> в задаче ANY.RUN (<code>8301adac-73a6-4d0e-88a7-ad238ef6ce99</code>) указан MD5 <code>E9B97926F934641481C6AB80BDC2E744</code>, а у рассматриваемого файла MD5 <code>ce3651ed3c3219a85422eda29b9d2a57</code>. По уточнению команды, в ANY.RUN запускался активный зловред, устанавливаемый после CrazyVPN.apk; это вторая стадия, а не дроппер.</div>
+          <p>Обнаружены два разных адреса: <code>31.76.244.129</code> (зашит в дроппере) и <code>31.56.19.10:8080</code> (C2 payload). Вероятно, это разные серверы с разными ролями — телеметрия дроппера и управление RAT. Оба адреса следует учитывать как IOC.</p>
+        </section>
+
+        <section id="context">
+          <h2>5. Контекст: Oblivion RAT</h2>
+          <p>По открытым отчётам (в частности, iVerify, март 2026) Oblivion продаётся как MaaS примерно за 300 долларов в месяц и включает генератор APK, генератор дропперов с поддельными страницами обновления Google Play и панель управления. Двухстадийная схема (дроппер со вложенным сжатым или зашифрованным payload и поддельные страницы установки) совпадает с поведением исследованного образца.</p>
+          <p>Генератор позволяет оператору менять имя, иконку и имя пакета, поэтому одно семейство может встречаться под разными названиями («Crazy VPN», «ButtonVPN» и другие). Стандартные имена из публичных отчётов (<code>com.darkpurecore*</code>, <code>com.oblivion.dropper.MainActivity</code>) в образце не использованы: сборка кастомная.</p>
+          <p class="muted">Атрибуция к Oblivion RAT опирается на внешние данные команды и сходство наблюдаемой схемы, а не на успешную расшифровку payload.</p>
+        </section>
+
+        <section id="ioc">
+          <h2>6. Индикаторы компрометации (IOC)</h2>
+          <p class="muted">Используйте индикаторы в рамках защитного мониторинга. Перед блокировкой учитывайте возможные ложные срабатывания и контекст собственной инфраструктуры.</p>
+          <ul class="ioc-list">
+            <li><button class="copy" data-copy="de648cfbb59cf5e74944f62c5b345a1ef94f133aa6b970239c1c0f98ca7d83e6">Копировать</button><strong>SHA-256 дроппера</strong><span class="mono">de648cfbb59cf5e74944f62c5b345a1ef94f133aa6b970239c1c0f98ca7d83e6</span></li>
+            <li><button class="copy" data-copy="ce3651ed3c3219a85422eda29b9d2a57">Копировать</button><strong>MD5 дроппера</strong><span class="mono">ce3651ed3c3219a85422eda29b9d2a57</span></li>
+            <li><button class="copy" data-copy="com.crazyvpn.service.v38e11539, com.crazyvpn.a7zkg3">Копировать</button><strong>Имена пакетов</strong><span class="mono">com.crazyvpn.service.v38e11539</span>, <span class="mono">com.crazyvpn.a7zkg3</span></li>
+            <li><button class="copy" data-copy="31.76.244.129, 31.56.19.10:8080">Копировать</button><strong>IP-адреса / C2</strong><span class="mono">31.76.244.129</span>, <span class="mono">31.56.19.10:8080</span></li>
+            <li><button class="copy" data-copy="vanta.im">Копировать</button><strong>Домен</strong><span class="mono">vanta.im</span></li>
+            <li><button class="copy" data-copy="https://31.76.244.129/api/debug/event">Копировать</button><strong>URL</strong><span class="mono">https://31.76.244.129/api/debug/event</span></li>
+            <li><button class="copy" data-copy="C8:A2:E9:BC:CF:59:7C:2F:B6:DC:66:BE:E2:93:FC:13:F2:FC:47:EC:77:BC:6B:2B:0D:52:C1:1F:51:19:2A:B8">Копировать</button><strong>SHA-256 сертификата подписи</strong><span class="mono">C8:A2:E9:BC:CF:59:7C:2F:B6:DC:66:BE:E2:93:FC:13:F2:FC:47:EC:77:BC:6B:2B:0D:52:C1:1F:51:19:2A:B8</span> <span class="muted">(публичный тестовый ключ AOSP; самостоятельный индикатор слабый)</span></li>
+            <li><button class="copy" data-copy="E9B97926F934641481C6AB80BDC2E744">Копировать</button><strong>Дополнительный MD5 из ANY.RUN</strong><span class="mono">E9B97926F934641481C6AB80BDC2E744</span> <span class="muted">(вторая стадия, по данным команды)</span></li>
+          </ul>
+        </section>
+
+        <section id="response">
+          <h2>7. Статус реагирования</h2>
+          <p>По информации автора, один из хостеров ответил на обращение и сообщил, что работает над удалением вредоносного сервера. Подтверждение удаления пока не получено.</p>
+        </section>
+
+        <section id="recommendations">
+          <h2>8. Рекомендации</h2>
+          <ol>
+            <li>Блокировать IOC из раздела 6 на периметре и в DNS, включая DoH-резолв <code>vanta.im</code> там, где это применимо.</li>
+            <li>Не устанавливать и не запускать образец. Хранить его только на изолированной машине — например, в архиве с паролем или с изменённым расширением.</li>
+            <li>Если приложение уже установлено: включить режим полёта, удалить приложение, проверить списки «Специальные возможности» и «Администраторы устройства», сменить пароли и включить 2FA с другого устройства — особенно для банков и мессенджеров.</li>
+            <li>Продолжить обращения к хостерам по обоим IP-адресам и по домену <code>vanta.im</code> (регистратор, DNS-провайдер).</li>
+            <li>Получить файл второй стадии из ANY.RUN и сверить его с пакетом <code>com.crazyvpn.a7zkg3</code> для дополнительного подтверждения семейства.</li>
+            <li>Найти родственные образцы через связи C2 на VirusTotal (Communicating Files), записи ThreatFox и MalwareBazaar.</li>
+          </ol>
+        </section>
+      </article>
+    </main>
+  </div>
+  <footer>
+    <div class="wrap">Технический доклад · Crazy VPN / предполагаемая связь с Oblivion RAT. Часть выводов основана на данных команды и требует независимой проверки.</div>
+  </footer>
+  <script>
+    document.querySelectorAll('[data-copy]').forEach((button) => {
+      button.addEventListener('click', async () => {
+        const value = button.getAttribute('data-copy');
+        const original = button.textContent;
+        try {
+          await navigator.clipboard.writeText(value);
+          button.textContent = 'Скопировано';
+        } catch {
+          const field = document.createElement('textarea');
+          field.value = value;
+          field.style.position = 'fixed';
+          field.style.opacity = '0';
+          document.body.appendChild(field);
+          field.select();
+          try {
+            document.execCommand('copy');
+            button.textContent = 'Скопировано';
+          } catch {
+            button.textContent = 'Не удалось';
+          }
+          field.remove();
+        }
+        setTimeout(() => { button.textContent = original; }, 1600);
+      });
+    });
+  </script>
+</body>
+</html>
