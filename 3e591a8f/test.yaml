@@ -1,0 +1,1369 @@
+port: 0
+socks-port: 0
+redir-port: 0
+tproxy-port: 0
+mixed-port: 7890
+ss-config: ''
+vmess-config: ''
+inbound-tfo: false
+inbound-mptcp: false
+authentication: []
+skip-auth-prefixes: []
+lan-allowed-ips:
+- 0.0.0.0/0
+- ::/0
+lan-disallowed-ips: null
+allow-lan: false
+bind-address: 127.0.0.1
+mode: rule
+unified-delay: true
+log-level: error
+ipv6: true
+external-controller: ''
+external-controller-routing-mark: 0
+external-controller-pipe: ''
+external-controller-unix: ''
+external-controller-tls: ''
+external-controller-cors:
+  allow-origins:
+  - '*'
+  allow-private-network: true
+external-ui: ''
+external-ui-url: ''
+external-ui-name: ''
+external-doh-server: ''
+secret: ''
+interface-name: ''
+routing-mark: 0
+tunnels: null
+geo-auto-update: false
+geo-update-interval: 24
+geodata-mode: false
+geodata-loader: memconservative
+geosite-matcher: ''
+tcp-concurrent: true
+find-process-mode: 'off'
+global-client-fingerprint: ''
+global-ua: FlClash/v0.9.0 clash-verge Platform/android
+etag-support: true
+keep-alive-idle: 15
+keep-alive-interval: 30
+disable-keep-alive: false
+proxy-providers: null
+rule-providers: null
+proxies:
+- allowed-ips:
+  - 0.0.0.0/0
+  - ::/0
+  amnezia-wg-option:
+    h1: 1
+    h2: 2
+    h3: 3
+    h4: 4
+    i1: <r 8><b 0x0000000000000000><b 0x212022080000000000000178222000300000002c010100040300000c0100000c800e00800300000802000005030000080300000c000000080400000e28000108000e0000><r
+      256><b 0x00000024><r 32>
+    i2: <b 0x5349502f322e302031303020547279696e670d0a5669613a205349502f322e302f55445020706333332e61746c616e74612e636f6d3b6272616e63683d7a39684734624b3737366173646864730d0a546f3a20426f62203c7369703a626f624062696c6f78692e636f6d3e0d0a46726f6d3a20416c696365203c7369703a616c6963654061746c616e74612e636f6d3e3b7461673d313932383330313737340d0a43616c6c2d49443a20613834623463373665363637313040706333332e61746c616e74612e636f6d0d0a435365713a2033313431353920494e564954450d0a436f6e74656e742d4c656e6774683a20300d0a0d0a>
+    i3: <r 31>
+    i4: <b 0xb9b6aa93be7f36963ce4411e82ce8d18>
+    i5: <r 15>
+    jc: 5
+    jmax: 121
+    jmin: 24
+    random-trailers: true
+    s1: 0
+    s2: 0
+    s3: 0
+    s4: 0
+    version: 3
+  ip: 172.16.0.2
+  ipv6: 2606:4700:110:8fb5:9112:4416:f358:2331
+  mtu: 1280
+  name: CF:500:IKEv2
+  port: 500
+  private-key: BWtkl+zxv8HwiUXi9DzbjPK7cRqa0C5gf+TTwB4oi5A=
+  public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=
+  reserved:
+  - 151
+  - 57
+  - 126
+  server: engage.cloudflareclient.com
+  type: wireguard
+  udp: true
+- allowed-ips:
+  - 0.0.0.0/0
+  - ::/0
+  amnezia-wg-option:
+    h1: 1
+    h2: 2
+    h3: 3
+    h4: 4
+    i1: <r 8><b 0x0000000000000000><b 0x212022080000000000000178222000300000002c010100040300000c0100000c800e00800300000802000005030000080300000c000000080400000e28000108000e0000><r
+      256><b 0x00000024><r 32>
+    i2: <b 0x5349502f322e302031303020547279696e670d0a5669613a205349502f322e302f55445020706333332e61746c616e74612e636f6d3b6272616e63683d7a39684734624b3737366173646864730d0a546f3a20426f62203c7369703a626f624062696c6f78692e636f6d3e0d0a46726f6d3a20416c696365203c7369703a616c6963654061746c616e74612e636f6d3e3b7461673d313932383330313737340d0a43616c6c2d49443a20613834623463373665363637313040706333332e61746c616e74612e636f6d0d0a435365713a2033313431353920494e564954450d0a436f6e74656e742d4c656e6774683a20300d0a0d0a>
+    i3: <r 22>
+    i4: <b 0xddccaee282723a13a13171f8784135>
+    i5: <r 23>
+    jc: 6
+    jmax: 50
+    jmin: 10
+    s1: 0
+    s2: 0
+    s3: 0
+    s4: 0
+  ip: 172.16.0.2
+  ipv6: 2606:4700:110:830c:1478:36e7:e193:2dc1
+  mtu: 1280
+  name: CF:500:IKEv2-2
+  port: 500
+  private-key: BWtkl+zxv8HwiUXi9DzbjPK7cRqa0C5gf+TTwB4oi5A=
+  public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=
+  reserved:
+  - 151
+  - 57
+  - 126
+  server: engage.cloudflareclient.com
+  type: wireguard
+  udp: true
+- allowed-ips:
+  - 0.0.0.0/0
+  - ::/0
+  amnezia-wg-option:
+    h1: 1
+    h2: 2
+    h3: 3
+    h4: 4
+    i1: <b 0x00012112a442><r 12>
+    i2: <b 0x5349502f322e302031303020547279696e670d0a5669613a205349502f322e302f55445020706333332e61746c616e74612e636f6d3b6272616e63683d7a39684734624b3737366173646864730d0a546f3a20426f62203c7369703a626f624062696c6f78692e636f6d3e0d0a46726f6d3a20416c696365203c7369703a616c6963654061746c616e74612e636f6d3e3b7461673d313932383330313737340d0a43616c6c2d49443a20613834623463373665363637313040706333332e61746c616e74612e636f6d0d0a435365713a2033313431353920494e564954450d0a436f6e74656e742d4c656e6774683a20300d0a0d0a>
+    i3: <r 31>
+    i4: <b 0xb9b6aa93be7f36963ce4411e82ce8d18>
+    i5: <r 15>
+    jc: 6
+    jmax: 50
+    jmin: 5
+    random-trailers: true
+    s1: 0
+    s2: 0
+    s3: 0
+    s4: 0
+    version: 3
+  ip: 172.16.0.2
+  ipv6: 2606:4700:110:8fb5:9112:4416:f358:2331
+  mtu: 1280
+  name: CF:2408:STUN
+  port: 2408
+  private-key: BWtkl+zxv8HwiUXi9DzbjPK7cRqa0C5gf+TTwB4oi5A=
+  public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=
+  reserved:
+  - 151
+  - 57
+  - 126
+  server: engage.cloudflareclient.com
+  type: wireguard
+  udp: true
+- allowed-ips:
+  - 0.0.0.0/0
+  - ::/0
+  amnezia-wg-option:
+    h1: 1
+    h2: 2
+    h3: 3
+    h4: 4
+    i1: <b 0xc802001400000000000000008008000000000001>
+    i2: <b 0x5349502f322e302031303020547279696e670d0a5669613a205349502f322e302f55445020706333332e61746c616e74612e636f6d3b6272616e63683d7a39684734624b3737366173646864730d0a546f3a20426f62203c7369703a626f624062696c6f78692e636f6d3e0d0a46726f6d3a20416c696365203c7369703a616c6963654061746c616e74612e636f6d3e3b7461673d313932383330313737340d0a43616c6c2d49443a20613834623463373665363637313040706333332e61746c616e74612e636f6d0d0a435365713a2033313431353920494e564954450d0a436f6e74656e742d4c656e6774683a20300d0a0d0a>
+    i3: <r 31>
+    i4: <b 0xb9b6aa93be7f36963ce4411e82ce8d18>
+    i5: <r 15>
+    jc: 6
+    jmax: 50
+    jmin: 10
+    random-trailers: false
+    s1: 0
+    s2: 0
+    s3: 0
+    s4: 0
+    version: 3
+  ip: 172.16.0.2
+  ipv6: 2606:4700:110:8fb5:9112:4416:f358:2331
+  mtu: 1280
+  name: CF:1701:L2TP
+  port: 1701
+  private-key: BWtkl+zxv8HwiUXi9DzbjPK7cRqa0C5gf+TTwB4oi5A=
+  public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=
+  reserved:
+  - 151
+  - 57
+  - 126
+  server: engage.cloudflareclient.com
+  type: wireguard
+  udp: true
+- allowed-ips:
+  - 0.0.0.0/0
+  - ::/0
+  amnezia-wg-option:
+    h1: 1
+    h2: 2
+    h3: 3
+    h4: 4
+    i1: <b 0x00000000><r 8><b 0x0000000000000000><b 0x212022080000000000000178222000300000002c010100040300000c0100000c800e00800300000802000005030000080300000c000000080400000e28000108000e0000><r
+      256><b 0x00000024><r 32>
+    i2: <b 0x5349502f322e302031303020547279696e670d0a5669613a205349502f322e302f55445020706333332e61746c616e74612e636f6d3b6272616e63683d7a39684734624b3737366173646864730d0a546f3a20426f62203c7369703a626f624062696c6f78692e636f6d3e0d0a46726f6d3a20416c696365203c7369703a616c6963654061746c616e74612e636f6d3e3b7461673d313932383330313737340d0a43616c6c2d49443a20613834623463373665363637313040706333332e61746c616e74612e636f6d0d0a435365713a2033313431353920494e564954450d0a436f6e74656e742d4c656e6774683a20300d0a0d0a>
+    i3: <r 31>
+    i4: <b 0xb9b6aa93be7f36963ce4411e82ce8d18>
+    i5: <r 15>
+    jc: 6
+    jmax: 50
+    jmin: 10
+    random-trailers: false
+    s1: 0
+    s2: 0
+    s3: 0
+    s4: 0
+    version: 3
+  ip: 172.16.0.2
+  ipv6: 2606:4700:110:8fb5:9112:4416:f358:2331
+  mtu: 1280
+  name: CF:4500:IKEv2-NAT-T
+  port: 4500
+  private-key: BWtkl+zxv8HwiUXi9DzbjPK7cRqa0C5gf+TTwB4oi5A=
+  public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=
+  reserved:
+  - 151
+  - 57
+  - 126
+  server: engage.cloudflareclient.com
+  type: wireguard
+  udp: true
+- allowed-ips:
+  - 0.0.0.0/0
+  - ::/0
+  amnezia-wg-option:
+    h1: 1
+    h2: 2
+    h3: 3
+    h4: 4
+    i1: <b 0x16fefd000000000000000000380100002c000000000000002cfefd><r 32><b 0x00000002c02f01000000>
+    i2: <b 0x5349502f322e302031303020547279696e670d0a5669613a205349502f322e302f55445020706333332e61746c616e74612e636f6d3b6272616e63683d7a39684734624b3737366173646864730d0a546f3a20426f62203c7369703a626f624062696c6f78692e636f6d3e0d0a46726f6d3a20416c696365203c7369703a616c6963654061746c616e74612e636f6d3e3b7461673d313932383330313737340d0a43616c6c2d49443a20613834623463373665363637313040706333332e61746c616e74612e636f6d0d0a435365713a2033313431353920494e564954450d0a436f6e74656e742d4c656e6774683a20300d0a0d0a>
+    i3: <r 22>
+    i4: <b 0xddccaee282723a13a13171f8784135>
+    i5: <r 23>
+    jc: 6
+    jmax: 50
+    jmin: 10
+    s1: 0
+    s2: 0
+    s3: 0
+    s4: 0
+  ip: 172.16.0.2
+  ipv6: 2606:4700:110:830c:1478:36e7:e193:2dc1
+  mtu: 1280
+  name: CF:2408:DTLS
+  port: 2408
+  private-key: BWtkl+zxv8HwiUXi9DzbjPK7cRqa0C5gf+TTwB4oi5A=
+  public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=
+  reserved:
+  - 151
+  - 57
+  - 126
+  server: engage.cloudflareclient.com
+  type: wireguard
+  udp: true
+- allowed-ips:
+  - 0.0.0.0/0
+  - ::/0
+  amnezia-wg-option:
+    h1: 1
+    h2: 2
+    h3: 3
+    h4: 4
+    i1: <b 0xc802001400000000000000008008000000000001>
+    i2: <b 0x5349502f322e302031303020547279696e670d0a5669613a205349502f322e302f55445020706333332e61746c616e74612e636f6d3b6272616e63683d7a39684734624b3737366173646864730d0a546f3a20426f62203c7369703a626f624062696c6f78692e636f6d3e0d0a46726f6d3a20416c696365203c7369703a616c6963654061746c616e74612e636f6d3e3b7461673d313932383330313737340d0a43616c6c2d49443a20613834623463373665363637313040706333332e61746c616e74612e636f6d0d0a435365713a2033313431353920494e564954450d0a436f6e74656e742d4c656e6774683a20300d0a0d0a>
+    i3: <r 22>
+    i4: <b 0xddccaee282723a13a13171f8784135>
+    i5: <r 23>
+    jc: 5
+    jmax: 200
+    jmin: 100
+    s1: 0
+    s2: 0
+    s3: 0
+    s4: 0
+  ip: 172.16.0.2
+  ipv6: 2606:4700:110:830c:1478:36e7:e193:2dc1
+  mtu: 1280
+  name: CF:1701:L2TP-2
+  port: 1701
+  private-key: BWtkl+zxv8HwiUXi9DzbjPK7cRqa0C5gf+TTwB4oi5A=
+  public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=
+  reserved:
+  - 151
+  - 57
+  - 126
+  server: engage.cloudflareclient.com
+  type: wireguard
+  udp: true
+- allowed-ips:
+  - 0.0.0.0/0
+  - ::/0
+  amnezia-wg-option:
+    h1: 1
+    h2: 2
+    h3: 3
+    h4: 4
+    i1: <b 0x00000000><r 8><b 0x0000000000000000><b 0x212022080000000000000178222000300000002c010100040300000c0100000c800e00800300000802000005030000080300000c000000080400000e28000108000e0000><r
+      256><b 0x00000024><r 32>
+    i2: <b 0x5349502f322e302031303020547279696e670d0a5669613a205349502f322e302f55445020706333332e61746c616e74612e636f6d3b6272616e63683d7a39684734624b3737366173646864730d0a546f3a20426f62203c7369703a626f624062696c6f78692e636f6d3e0d0a46726f6d3a20416c696365203c7369703a616c6963654061746c616e74612e636f6d3e3b7461673d313932383330313737340d0a43616c6c2d49443a20613834623463373665363637313040706333332e61746c616e74612e636f6d0d0a435365713a2033313431353920494e564954450d0a436f6e74656e742d4c656e6774683a20300d0a0d0a>
+    i3: <r 22>
+    i4: <b 0xddccaee282723a13a13171f8784135>
+    i5: <r 23>
+    jc: 6
+    jmax: 50
+    jmin: 8
+    s1: 0
+    s2: 0
+    s3: 0
+    s4: 0
+  ip: 172.16.0.2
+  ipv6: 2606:4700:110:830c:1478:36e7:e193:2dc1
+  mtu: 1280
+  name: CF:4500:IKEv2-NAT-T-2
+  port: 4500
+  private-key: BWtkl+zxv8HwiUXi9DzbjPK7cRqa0C5gf+TTwB4oi5A=
+  public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=
+  reserved:
+  - 151
+  - 57
+  - 126
+  server: engage.cloudflareclient.com
+  type: wireguard
+  udp: true
+- allowed-ips:
+  - 0.0.0.0/0
+  - ::/0
+  amnezia-wg-option:
+    h1: 1
+    h2: 2
+    h3: 3
+    h4: 4
+    i1: <r 8><b 0x0000000000000000><b 0x212022080000000000000178222000300000002c010100040300000c0100000c800e00800300000802000005030000080300000c000000080400000e28000108000e0000><r
+      256><b 0x00000024><r 32>
+    i2: <b 0x5349502f322e302031303020547279696e670d0a5669613a205349502f322e302f55445020706333332e61746c616e74612e636f6d3b6272616e63683d7a39684734624b3737366173646864730d0a546f3a20426f62203c7369703a626f624062696c6f78692e636f6d3e0d0a46726f6d3a20416c696365203c7369703a616c6963654061746c616e74612e636f6d3e3b7461673d313932383330313737340d0a43616c6c2d49443a20613834623463373665363637313040706333332e61746c616e74612e636f6d0d0a435365713a2033313431353920494e564954450d0a436f6e74656e742d4c656e6774683a20300d0a0d0a>
+    i3: <r 23>
+    i4: <b 0xa3a413ee17cdf01e0b>
+    i5: <r 23>
+    jc: 5
+    jmax: 200
+    jmin: 100
+    s1: 0
+    s2: 0
+    s3: 0
+    s4: 0
+  ip: 172.16.0.2
+  ipv6: 2606:4700:110:830c:1478:36e7:e193:2dc1
+  mtu: 1280
+  name: CF:500:IKEv2-3
+  port: 500
+  private-key: BWtkl+zxv8HwiUXi9DzbjPK7cRqa0C5gf+TTwB4oi5A=
+  public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=
+  reserved:
+  - 151
+  - 57
+  - 126
+  server: engage.cloudflareclient.com
+  type: wireguard
+  udp: true
+- allowed-ips:
+  - 0.0.0.0/0
+  - ::/0
+  amnezia-wg-option:
+    h1: 1
+    h2: 2
+    h3: 3
+    h4: 4
+    i1: <b 0x8000><r 10><r 160>
+    i2: <b 0x5349502f322e302031303020547279696e670d0a5669613a205349502f322e302f55445020706333332e61746c616e74612e636f6d3b6272616e63683d7a39684734624b3737366173646864730d0a546f3a20426f62203c7369703a626f624062696c6f78692e636f6d3e0d0a46726f6d3a20416c696365203c7369703a616c6963654061746c616e74612e636f6d3e3b7461673d313932383330313737340d0a43616c6c2d49443a20613834623463373665363637313040706333332e61746c616e74612e636f6d0d0a435365713a2033313431353920494e564954450d0a436f6e74656e742d4c656e6774683a20300d0a0d0a>
+    i3: <r 23>
+    i4: <b 0xa3a413ee17cdf01e0b>
+    i5: <r 23>
+    jc: 5
+    jmax: 200
+    jmin: 100
+    s1: 0
+    s2: 0
+    s3: 0
+    s4: 0
+  ip: 172.16.0.2
+  ipv6: 2606:4700:110:830c:1478:36e7:e193:2dc1
+  mtu: 1280
+  name: CF:2408:RTP
+  port: 2408
+  private-key: BWtkl+zxv8HwiUXi9DzbjPK7cRqa0C5gf+TTwB4oi5A=
+  public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=
+  reserved:
+  - 151
+  - 57
+  - 126
+  server: engage.cloudflareclient.com
+  type: wireguard
+  udp: true
+- allowed-ips:
+  - 0.0.0.0/0
+  - ::/0
+  amnezia-wg-option:
+    h1: 1
+    h2: 2
+    h3: 3
+    h4: 4
+    i1: <b 0xc802001400000000000000008008000000000001>
+    i2: <b 0x5349502f322e302031303020547279696e670d0a5669613a205349502f322e302f55445020706333332e61746c616e74612e636f6d3b6272616e63683d7a39684734624b3737366173646864730d0a546f3a20426f62203c7369703a626f624062696c6f78692e636f6d3e0d0a46726f6d3a20416c696365203c7369703a616c6963654061746c616e74612e636f6d3e3b7461673d313932383330313737340d0a43616c6c2d49443a20613834623463373665363637313040706333332e61746c616e74612e636f6d0d0a435365713a2033313431353920494e564954450d0a436f6e74656e742d4c656e6774683a20300d0a0d0a>
+    i3: <r 23>
+    i4: <b 0xa3a413ee17cdf01e0b>
+    i5: <r 23>
+    jc: 5
+    jmax: 200
+    jmin: 100
+    s1: 0
+    s2: 0
+    s3: 0
+    s4: 0
+  ip: 172.16.0.2
+  ipv6: 2606:4700:110:830c:1478:36e7:e193:2dc1
+  mtu: 1280
+  name: CF:1701:L2TP-3
+  port: 1701
+  private-key: BWtkl+zxv8HwiUXi9DzbjPK7cRqa0C5gf+TTwB4oi5A=
+  public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=
+  reserved:
+  - 151
+  - 57
+  - 126
+  server: engage.cloudflareclient.com
+  type: wireguard
+  udp: true
+- allowed-ips:
+  - 0.0.0.0/0
+  - ::/0
+  amnezia-wg-option:
+    h1: 1
+    h2: 2
+    h3: 3
+    h4: 4
+    i1: <b 0x00000000><r 8><b 0x0000000000000000><b 0x212022080000000000000178222000300000002c010100040300000c0100000c800e00800300000802000005030000080300000c000000080400000e28000108000e0000><r
+      256><b 0x00000024><r 32>
+    i2: <b 0x5349502f322e302031303020547279696e670d0a5669613a205349502f322e302f55445020706333332e61746c616e74612e636f6d3b6272616e63683d7a39684734624b3737366173646864730d0a546f3a20426f62203c7369703a626f624062696c6f78692e636f6d3e0d0a46726f6d3a20416c696365203c7369703a616c6963654061746c616e74612e636f6d3e3b7461673d313932383330313737340d0a43616c6c2d49443a20613834623463373665363637313040706333332e61746c616e74612e636f6d0d0a435365713a2033313431353920494e564954450d0a436f6e74656e742d4c656e6774683a20300d0a0d0a>
+    i3: <r 23>
+    i4: <b 0xa3a413ee17cdf01e0b>
+    i5: <r 23>
+    jc: 5
+    jmax: 200
+    jmin: 100
+    s1: 0
+    s2: 0
+    s3: 0
+    s4: 0
+  ip: 172.16.0.2
+  ipv6: 2606:4700:110:830c:1478:36e7:e193:2dc1
+  mtu: 1280
+  name: CF:4500:IKEv2-NAT-T-3
+  port: 4500
+  private-key: BWtkl+zxv8HwiUXi9DzbjPK7cRqa0C5gf+TTwB4oi5A=
+  public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=
+  reserved:
+  - 151
+  - 57
+  - 126
+  server: engage.cloudflareclient.com
+  type: wireguard
+  udp: true
+- allowed-ips:
+  - 0.0.0.0/0
+  - ::/0
+  amnezia-wg-option:
+    h1: 1
+    h2: 2
+    h3: 3
+    h4: 4
+    i1: <r 8><b 0x0000000000000000><b 0x212022080000000000000178222000300000002c010100040300000c0100000c800e00800300000802000005030000080300000c000000080400000e28000108000e0000><r
+      256><b 0x00000024><r 32>
+    i2: <b 0x0000000000010000000000000000000000000000000000000000000000000000>
+    i3: <r 23>
+    i4: <b 0xa3a413ee17cdf01e0b>
+    i5: <r 23>
+    jc: 5
+    jmax: 150
+    jmin: 70
+    s1: 0
+    s2: 0
+    s3: 0
+    s4: 0
+  ip: 172.16.0.2
+  ipv6: 2606:4700:110:830c:1478:36e7:e193:2dc1
+  mtu: 1370
+  name: CF:500:IKEv2-4
+  port: 500
+  private-key: BWtkl+zxv8HwiUXi9DzbjPK7cRqa0C5gf+TTwB4oi5A=
+  public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=
+  reserved:
+  - 151
+  - 57
+  - 126
+  server: engage.cloudflareclient.com
+  type: wireguard
+  udp: true
+- allowed-ips:
+  - 0.0.0.0/0
+  - ::/0
+  amnezia-wg-option:
+    h1: 1
+    h2: 2
+    h3: 3
+    h4: 4
+    i1: <b 0x00012112a442><r 12>
+    i2: <b 0x0000000000010000000000000000000000000000000000000000000000000000>
+    i3: <r 23>
+    i4: <b 0xa3a413ee17cdf01e0b>
+    i5: <r 23>
+    jc: 5
+    jmax: 150
+    jmin: 70
+    s1: 0
+    s2: 0
+    s3: 0
+    s4: 0
+  ip: 172.16.0.2
+  ipv6: 2606:4700:110:830c:1478:36e7:e193:2dc1
+  mtu: 1370
+  name: CF:2408:STUN-2
+  port: 2408
+  private-key: BWtkl+zxv8HwiUXi9DzbjPK7cRqa0C5gf+TTwB4oi5A=
+  public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=
+  reserved:
+  - 151
+  - 57
+  - 126
+  server: engage.cloudflareclient.com
+  type: wireguard
+  udp: true
+- allowed-ips:
+  - 0.0.0.0/0
+  - ::/0
+  amnezia-wg-option:
+    h1: 1
+    h2: 2
+    h3: 3
+    h4: 4
+    i1: <b 0xc802001400000000000000008008000000000001>
+    i2: <b 0x0000000000010000000000000000000000000000000000000000000000000000>
+    i3: <r 23>
+    i4: <b 0xa3a413ee17cdf01e0b>
+    i5: <r 23>
+    jc: 5
+    jmax: 150
+    jmin: 70
+    s1: 0
+    s2: 0
+    s3: 0
+    s4: 0
+  ip: 172.16.0.2
+  ipv6: 2606:4700:110:830c:1478:36e7:e193:2dc1
+  mtu: 1370
+  name: CF:1701:L2TP-4
+  port: 1701
+  private-key: BWtkl+zxv8HwiUXi9DzbjPK7cRqa0C5gf+TTwB4oi5A=
+  public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=
+  reserved:
+  - 151
+  - 57
+  - 126
+  server: engage.cloudflareclient.com
+  type: wireguard
+  udp: true
+- allowed-ips:
+  - 0.0.0.0/0
+  - ::/0
+  amnezia-wg-option:
+    h1: 1
+    h2: 2
+    h3: 3
+    h4: 4
+    i1: <b 0x00000000><r 8><b 0x0000000000000000><b 0x212022080000000000000178222000300000002c010100040300000c0100000c800e00800300000802000005030000080300000c000000080400000e28000108000e0000><r
+      256><b 0x00000024><r 32>
+    i2: <b 0x0000000000010000000000000000000000000000000000000000000000000000>
+    i3: <r 23>
+    i4: <b 0xa3a413ee17cdf01e0b>
+    i5: <r 23>
+    jc: 5
+    jmax: 150
+    jmin: 70
+    s1: 0
+    s2: 0
+    s3: 0
+    s4: 0
+  ip: 172.16.0.2
+  ipv6: 2606:4700:110:830c:1478:36e7:e193:2dc1
+  mtu: 1370
+  name: CF:4500:IKEv2-NAT-T-4
+  port: 4500
+  private-key: BWtkl+zxv8HwiUXi9DzbjPK7cRqa0C5gf+TTwB4oi5A=
+  public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=
+  reserved:
+  - 151
+  - 57
+  - 126
+  server: engage.cloudflareclient.com
+  type: wireguard
+  udp: true
+- allowed-ips:
+  - 0.0.0.0/0
+  - ::/0
+  amnezia-wg-option:
+    h1: 1
+    h2: 2
+    h3: 3
+    h4: 4
+    i1: <b 0x16fefd000000000000000000380100002c000000000000002cfefd><r 32><b 0x00000002c02f01000000>
+    i2: <b 0x0000000000010000000000000000000000000000000000000000000000000000>
+    i3: <r 23>
+    i4: <b 0xa3a413ee17cdf01e0b>
+    i5: <r 23>
+    jc: 6
+    jmax: 50
+    jmin: 10
+    s1: 0
+    s2: 0
+    s3: 0
+    s4: 0
+  ip: 172.16.0.2
+  ipv6: 2606:4700:110:830c:1478:36e7:e193:2dc1
+  mtu: 1370
+  name: SE:2408:DTLS
+  port: 2408
+  private-key: BWtkl+zxv8HwiUXi9DzbjPK7cRqa0C5gf+TTwB4oi5A=
+  public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=
+  reserved:
+  - 151
+  - 57
+  - 126
+  server: 188.114.96.155
+  type: wireguard
+  udp: true
+- allowed-ips:
+  - 0.0.0.0/0
+  - ::/0
+  amnezia-wg-option:
+    h1: 1
+    h2: 2
+    h3: 3
+    h4: 4
+    i1: <b 0x8000><r 10><r 160>
+    i2: <b 0x0000000000010000000000000000000000000000000000000000000000000000>
+    i3: <r 23>
+    i4: <b 0xa3a413ee17cdf01e0b>
+    i5: <r 23>
+    jc: 6
+    jmax: 50
+    jmin: 10
+    s1: 0
+    s2: 0
+    s3: 0
+    s4: 0
+  ip: 172.16.0.2
+  ipv6: 2606:4700:110:830c:1478:36e7:e193:2dc1
+  mtu: 1370
+  name: SE:2408:RTP
+  port: 2408
+  private-key: BWtkl+zxv8HwiUXi9DzbjPK7cRqa0C5gf+TTwB4oi5A=
+  public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=
+  reserved:
+  - 151
+  - 57
+  - 126
+  server: 162.159.192.14
+  type: wireguard
+  udp: true
+- allowed-ips:
+  - 0.0.0.0/0
+  - ::/0
+  amnezia-wg-option:
+    h1: 1
+    h2: 2
+    h3: 3
+    h4: 4
+    i1: <b 0x00012112a442><r 12>
+    i2: <b 0x0000000000010000000000000000000000000000000000000000000000000000>
+    i3: <r 23>
+    i4: <b 0xa3a413ee17cdf01e0b>
+    i5: <r 23>
+    jc: 6
+    jmax: 50
+    jmin: 10
+    s1: 0
+    s2: 0
+    s3: 0
+    s4: 0
+  ip: 172.16.0.2
+  ipv6: 2606:4700:110:830c:1478:36e7:e193:2dc1
+  mtu: 1370
+  name: DE:2408:STUN
+  port: 2408
+  private-key: BWtkl+zxv8HwiUXi9DzbjPK7cRqa0C5gf+TTwB4oi5A=
+  public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=
+  reserved:
+  - 151
+  - 57
+  - 126
+  server: 188.114.96.9
+  type: wireguard
+  udp: true
+- allowed-ips:
+  - 0.0.0.0/0
+  - ::/0
+  amnezia-wg-option:
+    h1: 1
+    h2: 2
+    h3: 3
+    h4: 4
+    i1: <b 0xc802001400000000000000008008000000000001>
+    i2: <b 0x0000000000010000000000000000000000000000000000000000000000000000>
+    i3: <r 23>
+    i4: <b 0xa3a413ee17cdf01e0b>
+    i5: <r 23>
+    jc: 6
+    jmax: 50
+    jmin: 10
+    s1: 0
+    s2: 0
+    s3: 0
+    s4: 0
+  ip: 172.16.0.2
+  ipv6: 2606:4700:110:830c:1478:36e7:e193:2dc1
+  mtu: 1370
+  name: SE:1701:L2TP
+  port: 1701
+  private-key: BWtkl+zxv8HwiUXi9DzbjPK7cRqa0C5gf+TTwB4oi5A=
+  public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=
+  reserved:
+  - 151
+  - 57
+  - 126
+  server: 162.159.192.245
+  type: wireguard
+  udp: true
+- allowed-ips:
+  - 0.0.0.0/0
+  - ::/0
+  amnezia-wg-option:
+    h1: 1
+    h2: 2
+    h3: 3
+    h4: 4
+    i1: <b 0x16fefd000000000000000000380100002c000000000000002cfefd><r 32><b 0x00000002c02f01000000>
+    i2: <b 0x0000000000010000000000000000000000000000000000000000000000000000>
+    i3: <r 23>
+    i4: <b 0xa3a413ee17cdf01e0b>
+    i5: <r 23>
+    jc: 6
+    jmax: 50
+    jmin: 10
+    s1: 0
+    s2: 0
+    s3: 0
+    s4: 0
+  ip: 172.16.0.2
+  ipv6: 2606:4700:110:830c:1478:36e7:e193:2dc1
+  mtu: 1370
+  name: SE:2408:DTLS-2
+  port: 2408
+  private-key: BWtkl+zxv8HwiUXi9DzbjPK7cRqa0C5gf+TTwB4oi5A=
+  public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=
+  reserved:
+  - 151
+  - 57
+  - 126
+  server: 188.114.96.66
+  type: wireguard
+  udp: true
+- allowed-ips:
+  - 0.0.0.0/0
+  - ::/0
+  amnezia-wg-option:
+    h1: 1
+    h2: 2
+    h3: 3
+    h4: 4
+    i1: <b 0x8000><r 10><r 160>
+    i2: <b 0x0000000000010000000000000000000000000000000000000000000000000000>
+    i3: <r 23>
+    i4: <b 0xa3a413ee17cdf01e0b>
+    i5: <r 23>
+    jc: 6
+    jmax: 50
+    jmin: 10
+    s1: 0
+    s2: 0
+    s3: 0
+    s4: 0
+  ip: 172.16.0.2
+  ipv6: 2606:4700:110:830c:1478:36e7:e193:2dc1
+  mtu: 1370
+  name: SE:2408:RTP-2
+  port: 2408
+  private-key: BWtkl+zxv8HwiUXi9DzbjPK7cRqa0C5gf+TTwB4oi5A=
+  public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=
+  reserved:
+  - 151
+  - 57
+  - 126
+  server: 188.114.97.147
+  type: wireguard
+  udp: true
+- allowed-ips:
+  - 0.0.0.0/0
+  - ::/0
+  amnezia-wg-option:
+    h1: 1
+    h2: 2
+    h3: 3
+    h4: 4
+    i1: <b 0x00012112a442><r 12>
+    i2: <b 0x0000000000010000000000000000000000000000000000000000000000000000>
+    i3: <r 23>
+    i4: <b 0xa3a413ee17cdf01e0b>
+    i5: <r 23>
+    jc: 6
+    jmax: 50
+    jmin: 10
+    s1: 0
+    s2: 0
+    s3: 0
+    s4: 0
+  ip: 172.16.0.2
+  ipv6: 2606:4700:110:830c:1478:36e7:e193:2dc1
+  mtu: 1370
+  name: SE:2408:STUN
+  port: 2408
+  private-key: BWtkl+zxv8HwiUXi9DzbjPK7cRqa0C5gf+TTwB4oi5A=
+  public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=
+  reserved:
+  - 151
+  - 57
+  - 126
+  server: 188.114.97.15
+  type: wireguard
+  udp: true
+- allowed-ips:
+  - 0.0.0.0/0
+  - ::/0
+  amnezia-wg-option:
+    h1: 1
+    h2: 2
+    h3: 3
+    h4: 4
+    i1: <r 8><b 0x0000000000000000><b 0x212022080000000000000178222000300000002c010100040300000c0100000c800e00800300000802000005030000080300000c000000080400000e28000108000e0000><r
+      256><b 0x00000024><r 32>
+    i2: <b 0x0000000000010000000000000000000000000000000000000000000000000000>
+    i3: <r 23>
+    i4: <b 0xa3a413ee17cdf01e0b>
+    i5: <r 23>
+    jc: 6
+    jmax: 50
+    jmin: 10
+    s1: 0
+    s2: 0
+    s3: 0
+    s4: 0
+  ip: 172.16.0.2
+  ipv6: 2606:4700:110:830c:1478:36e7:e193:2dc1
+  mtu: 1370
+  name: SE:500:IKEv2
+  port: 500
+  private-key: BWtkl+zxv8HwiUXi9DzbjPK7cRqa0C5gf+TTwB4oi5A=
+  public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=
+  reserved:
+  - 151
+  - 57
+  - 126
+  server: 162.159.192.188
+  type: wireguard
+  udp: true
+- allowed-ips:
+  - 0.0.0.0/0
+  - ::/0
+  amnezia-wg-option:
+    h1: 1
+    h2: 2
+    h3: 3
+    h4: 4
+    i1: <b 0x16fefd000000000000000000380100002c000000000000002cfefd><r 32><b 0x00000002c02f01000000>
+    i2: <b 0x0000000000010000000000000000000000000000000000000000000000000000>
+    i3: <r 23>
+    i4: <b 0xa3a413ee17cdf01e0b>
+    i5: <r 23>
+    jc: 6
+    jmax: 50
+    jmin: 10
+    s1: 0
+    s2: 0
+    s3: 0
+    s4: 0
+  ip: 172.16.0.2
+  ipv6: 2606:4700:110:830c:1478:36e7:e193:2dc1
+  mtu: 1370
+  name: NL:2408:DTLS
+  port: 2408
+  private-key: BWtkl+zxv8HwiUXi9DzbjPK7cRqa0C5gf+TTwB4oi5A=
+  public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=
+  reserved:
+  - 151
+  - 57
+  - 126
+  server: 188.114.96.152
+  type: wireguard
+  udp: true
+- allowed-ips:
+  - 0.0.0.0/0
+  - ::/0
+  amnezia-wg-option:
+    h1: 1
+    h2: 2
+    h3: 3
+    h4: 4
+    i1: <b 0x8000><r 10><r 160>
+    i2: <b 0x0000000000010000000000000000000000000000000000000000000000000000>
+    i3: <r 23>
+    i4: <b 0xa3a413ee17cdf01e0b>
+    i5: <r 23>
+    jc: 6
+    jmax: 50
+    jmin: 10
+    s1: 0
+    s2: 0
+    s3: 0
+    s4: 0
+  ip: 172.16.0.2
+  ipv6: 2606:4700:110:830c:1478:36e7:e193:2dc1
+  mtu: 1370
+  name: SE:2408:RTP-3
+  port: 2408
+  private-key: BWtkl+zxv8HwiUXi9DzbjPK7cRqa0C5gf+TTwB4oi5A=
+  public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=
+  reserved:
+  - 151
+  - 57
+  - 126
+  server: 162.159.192.75
+  type: wireguard
+  udp: true
+- allowed-ips:
+  - 0.0.0.0/0
+  - ::/0
+  amnezia-wg-option:
+    h1: 1
+    h2: 2
+    h3: 3
+    h4: 4
+    i1: <b 0x00012112a442><r 12>
+    i2: <b 0x0000000000010000000000000000000000000000000000000000000000000000>
+    i3: <r 23>
+    i4: <b 0xa3a413ee17cdf01e0b>
+    i5: <r 23>
+    jc: 6
+    jmax: 50
+    jmin: 10
+    s1: 0
+    s2: 0
+    s3: 0
+    s4: 0
+  ip: 172.16.0.2
+  ipv6: 2606:4700:110:830c:1478:36e7:e193:2dc1
+  mtu: 1370
+  name: SE:2408:STUN-2
+  port: 2408
+  private-key: BWtkl+zxv8HwiUXi9DzbjPK7cRqa0C5gf+TTwB4oi5A=
+  public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=
+  reserved:
+  - 151
+  - 57
+  - 126
+  server: 188.114.97.152
+  type: wireguard
+  udp: true
+- allowed-ips:
+  - 0.0.0.0/0
+  - ::/0
+  amnezia-wg-option:
+    h1: 1
+    h2: 2
+    h3: 3
+    h4: 4
+    i1: <b 0x16fefd000000000000000000380100002c000000000000002cfefd><r 32><b 0x00000002c02f01000000>
+    i2: <b 0x0000000000010000000000000000000000000000000000000000000000000000>
+    i3: <r 23>
+    i4: <b 0xa3a413ee17cdf01e0b>
+    i5: <r 23>
+    jc: 6
+    jmax: 50
+    jmin: 10
+    s1: 0
+    s2: 0
+    s3: 0
+    s4: 0
+  ip: 172.16.0.2
+  ipv6: 2606:4700:110:830c:1478:36e7:e193:2dc1
+  mtu: 1370
+  name: SE:2408:DTLS-3
+  port: 2408
+  private-key: BWtkl+zxv8HwiUXi9DzbjPK7cRqa0C5gf+TTwB4oi5A=
+  public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=
+  reserved:
+  - 151
+  - 57
+  - 126
+  server: 188.114.97.195
+  type: wireguard
+  udp: true
+- allowed-ips:
+  - 0.0.0.0/0
+  - ::/0
+  amnezia-wg-option:
+    h1: 1
+    h2: 2
+    h3: 3
+    h4: 4
+    i1: <b 0x8000><r 10><r 160>
+    i2: <b 0x0000000000010000000000000000000000000000000000000000000000000000>
+    i3: <r 23>
+    i4: <b 0xa3a413ee17cdf01e0b>
+    i5: <r 23>
+    jc: 6
+    jmax: 50
+    jmin: 10
+    s1: 0
+    s2: 0
+    s3: 0
+    s4: 0
+  ip: 172.16.0.2
+  ipv6: 2606:4700:110:830c:1478:36e7:e193:2dc1
+  mtu: 1370
+  name: SE:2408:RTP-4
+  port: 2408
+  private-key: BWtkl+zxv8HwiUXi9DzbjPK7cRqa0C5gf+TTwB4oi5A=
+  public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=
+  reserved:
+  - 151
+  - 57
+  - 126
+  server: 188.114.97.239
+  type: wireguard
+  udp: true
+- allowed-ips:
+  - 0.0.0.0/0
+  - ::/0
+  amnezia-wg-option:
+    h1: 1
+    h2: 2
+    h3: 3
+    h4: 4
+    i1: <b 0x00012112a442><r 12>
+    i2: <b 0x0000000000010000000000000000000000000000000000000000000000000000>
+    i3: <r 23>
+    i4: <b 0xa3a413ee17cdf01e0b>
+    i5: <r 23>
+    jc: 6
+    jmax: 50
+    jmin: 10
+    s1: 0
+    s2: 0
+    s3: 0
+    s4: 0
+  ip: 172.16.0.2
+  ipv6: 2606:4700:110:830c:1478:36e7:e193:2dc1
+  mtu: 1370
+  name: SE:2408:STUN-3
+  port: 2408
+  private-key: BWtkl+zxv8HwiUXi9DzbjPK7cRqa0C5gf+TTwB4oi5A=
+  public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=
+  reserved:
+  - 151
+  - 57
+  - 126
+  server: 188.114.96.163
+  type: wireguard
+  udp: true
+proxy-groups:
+- name: AUTO (URLTest)
+  type: url-test
+  icon: https://www.vectorlogo.zone/logos/telegram/telegram-icon.svg
+  proxies:
+  - CF:500:IKEv2
+  - CF:500:IKEv2-2
+  - CF:2408:STUN
+  - CF:1701:L2TP
+  - CF:4500:IKEv2-NAT-T
+  - CF:2408:DTLS
+  - CF:1701:L2TP-2
+  - CF:4500:IKEv2-NAT-T-2
+  - CF:500:IKEv2-3
+  - CF:2408:RTP
+  - CF:1701:L2TP-3
+  - CF:4500:IKEv2-NAT-T-3
+  - CF:500:IKEv2-4
+  - CF:2408:STUN-2
+  - CF:1701:L2TP-4
+  - CF:4500:IKEv2-NAT-T-4
+  - SE:2408:DTLS
+  - SE:2408:RTP
+  - DE:2408:STUN
+  - SE:1701:L2TP
+  - SE:2408:DTLS-2
+  - SE:2408:RTP-2
+  - SE:2408:STUN
+  - SE:500:IKEv2
+  - NL:2408:DTLS
+  - SE:2408:RTP-3
+  - SE:2408:STUN-2
+  - SE:2408:DTLS-3
+  - SE:2408:RTP-4
+  - SE:2408:STUN-3
+  url: https://web.telegram.org/
+  interval: 10
+  timeout: 5000
+  tolerance: 20
+  max-failed-times: 1
+  lazy: true
+- icon: https://www.vectorlogo.zone/logos/cloudflare/cloudflare-icon.svg
+  interval: 300
+  name: Cloudflare
+  proxies:
+  - AUTO (URLTest)
+  - CF:500:IKEv2
+  - CF:500:IKEv2-2
+  - CF:2408:STUN
+  - CF:1701:L2TP
+  - CF:4500:IKEv2-NAT-T
+  - CF:2408:DTLS
+  - CF:1701:L2TP-2
+  - CF:4500:IKEv2-NAT-T-2
+  - SE:2408:DTLS
+  - SE:2408:RTP
+  - DE:2408:STUN
+  - SE:1701:L2TP
+  - SE:2408:DTLS-2
+  - SE:2408:RTP-2
+  - SE:2408:STUN
+  - SE:500:IKEv2
+  - NL:2408:DTLS
+  - SE:2408:RTP-3
+  - SE:2408:STUN-2
+  - SE:2408:DTLS-3
+  - SE:2408:RTP-4
+  - SE:2408:STUN-3
+  type: select
+  url: http://web.telegram.org/
+- name: Niche Imitation Test
+  type: select
+  proxies:
+  - AUTO (URLTest)
+  - CF:500:IKEv2
+  - CF:500:IKEv2-2
+  - CF:2408:STUN
+  - CF:1701:L2TP
+  - CF:4500:IKEv2-NAT-T
+  - CF:2408:DTLS
+  - CF:1701:L2TP-2
+  - CF:4500:IKEv2-NAT-T-2
+  - CF:500:IKEv2-3
+  - CF:2408:RTP
+  - CF:1701:L2TP-3
+  - CF:4500:IKEv2-NAT-T-3
+  - CF:500:IKEv2-4
+  - CF:2408:STUN-2
+  - CF:1701:L2TP-4
+  - CF:4500:IKEv2-NAT-T-4
+  - SE:2408:DTLS
+  - SE:2408:RTP
+  - DE:2408:STUN
+  - SE:1701:L2TP
+  - SE:2408:DTLS-2
+  - SE:2408:RTP-2
+  - SE:2408:STUN
+  - SE:500:IKEv2
+  - NL:2408:DTLS
+  - SE:2408:RTP-3
+  - SE:2408:STUN-2
+  - SE:2408:DTLS-3
+  - SE:2408:RTP-4
+  - SE:2408:STUN-3
+listeners: null
+hosts: {}
+dns:
+  enable: true
+  prefer-h3: false
+  ipv6: true
+  ipv6-timeout: 100
+  use-hosts: true
+  use-system-hosts: true
+  respect-rules: false
+  nameserver:
+  - https://1.1.1.1/dns-query
+  - https://1.0.0.1/dns-query
+  - https://[2606:4700:4700::1111]/dns-query
+  - https://[2606:4700:4700::1001]/dns-query
+  fallback:
+  - https://1.1.1.1/dns-query
+  - https://1.0.0.1/dns-query
+  - https://[2606:4700:4700::1111]/dns-query
+  - https://[2606:4700:4700::1001]/dns-query
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+    ipcidr: []
+    domain: null
+    geosite: []
+  fallback-lazy-query: false
+  listen: 0.0.0.0:1053
+  listen-routing-mark: 0
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-range6: ''
+  fake-ip-filter:
+  - dns.msftnsci.com
+  - www.msftnsci.com
+  - www.msftconnecttest.com
+  fake-ip-filter-mode: blacklist
+  fake-ip-ttl: 1
+  default-nameserver:
+  - 1.1.1.1
+  - 1.0.0.1
+  - 2606:4700:4700::1111
+  - 2606:4700:4700::1001
+  cache-algorithm: lru
+  cache-max-size: 0
+  nameserver-policy:
+    +.chatgpt.com:
+    - https://eu.geohide.ru/dns-query
+    +.openai.com:
+    - https://eu.geohide.ru/dns-query
+    +.oaistatic.com:
+    - https://eu.geohide.ru/dns-query
+    +.oaiusercontent.com:
+    - https://eu.geohide.ru/dns-query
+    +.gemini.google.com:
+    - https://eu.geohide.ru/dns-query
+    +.ai.google.dev:
+    - https://eu.geohide.ru/dns-query
+    +.aistudio.google.com:
+    - https://eu.geohide.ru/dns-query
+    +.generativelanguage.googleapis.com:
+    - https://eu.geohide.ru/dns-query
+  proxy-server-nameserver:
+  - https://1.1.1.1/dns-query
+  - https://1.0.0.1/dns-query
+  - https://[2606:4700:4700::1111]/dns-query
+  - https://[2606:4700:4700::1001]/dns-query
+  proxy-server-nameserver-policy: null
+  direct-nameserver: null
+  direct-nameserver-follow-policy: false
+ntp:
+  enable: false
+  server: time.apple.com
+  port: 123
+  interval: 30
+  dialer-proxy: ''
+  write-to-system: false
+tun:
+  enable: true
+  device: FlClash
+  stack: mips
+  dns-hijack:
+  - any:53
+  auto-route: true
+  auto-detect-interface: true
+  inet6-address:
+  - fdfe:dcba:9876::1/126
+  file-descriptor: 0
+  recvmsgx: true
+  processors-per-channel: 1
+  route-address: []
+  mtu: 1280
+  congestion-controller: bbr
+  strict-route: false
+  route-exclude-address:
+  - 0.0.0.0/8
+  - 10.0.0.0/8
+  - 127.0.0.0/8
+  - 169.254.0.0/16
+  - 172.16.0.0/12
+  - 192.168.0.0/16
+  - 224.0.0.0/4
+  - 255.255.255.255/32
+  - fc00::/7
+  - fe80::/10
+  - ff00::/8
+tuic-server:
+  enable: false
+  listen: ''
+  token: null
+  certificate: ''
+  private-key: BWtkl+zxv8HwiUXi9DzbjPK7cRqa0C5gf+TTwB4oi5A=
+  max-idle-time: 15000
+  authentication-timeout: 1000
+  alpn:
+  - h3
+  max-udp-relay-packet-size: 1500
+iptables:
+  enable: false
+  inbound-interface: lo
+  bypass: []
+  dns-redirect: true
+experimental:
+  fingerprints: null
+  quic-go-disable-gso: false
+  quic-go-disable-ecn: true
+  dialer-ip4p-convert: false
+profile:
+  store-selected: false
+  store-fake-ip: false
+geox-url:
+  mmdb: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.metadb
+  asn: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb
+  geoip: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.dat
+  geosite: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat
+sniffer:
+  enable: false
+  override-destination: true
+  sniffing: null
+  force-domain: []
+  skip-src-address: null
+  skip-dst-address: null
+  skip-domain: []
+  port-whitelist: []
+  force-dns-mapping: true
+  parse-pure-ip: true
+  sniff: {}
+tls:
+  certificate: ''
+  private-key: ''
+  client-auth-type: ''
+  client-auth-cert: ''
+  ech-key: ''
+  custom-certifactes: null
+clash-for-android:
+  append-system-dns: false
+  ui-subtitle-pattern: ''
+rules:
+- DOMAIN-SUFFIX,cloudflareclient.com,DIRECT
+- IP-CIDR,188.114.96.0/20,DIRECT
+- IP-CIDR,188.114.97.0/24,DIRECT
+- IP-CIDR,162.159.192.0/18,DIRECT
+- DOMAIN-SUFFIX,ru,DIRECT
+- DOMAIN-SUFFIX,xn--p1ai,DIRECT
+- DOMAIN-SUFFIX,chatgpt.com,Cloudflare
+- DOMAIN-SUFFIX,openai.com,Cloudflare
+- DOMAIN-SUFFIX,oaistatic.com,Cloudflare
+- DOMAIN-SUFFIX,oaiusercontent.com,Cloudflare
+- DOMAIN,gemini.google.com,Cloudflare
+- DOMAIN-SUFFIX,ai.google.dev,Cloudflare
+- DOMAIN,aistudio.google.com,Cloudflare
+- DOMAIN,generativelanguage.googleapis.com,Cloudflare
+- DOMAIN,telegram.org,AUTO (URLTest)
+- MATCH,Cloudflare
